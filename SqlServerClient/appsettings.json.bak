@@ -1,0 +1,6 @@
+{
+    "ConnectionStrings": {
+        "MyConn": "Data Source=.\\SQLEXPRESS;Initial Catalog=DBNAME;User ID=USERNAME;Password=YOURPASSWORD",
+        "MySqlDatabase": "Data Source=CONTOSO.database.windows.net,1433;Initial Catalog=DBNAME;User ID=USERNAME;Password=YOURPASSWORD"
+    }
+}
