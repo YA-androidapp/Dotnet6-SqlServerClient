@@ -10,6 +10,17 @@ namespace SqlServerClient.Models
             SalesOrderDetails = new HashSet<SalesOrderDetail>();
         }
 
+        public Product(string name, string productNumber, decimal standardCost, decimal listPrice, DateTime sellStartDate, Guid rowguid, DateTime modifiedDate)
+        {
+            Name = name;
+            ProductNumber = productNumber;
+            StandardCost = standardCost;
+            ListPrice = listPrice;
+            SellStartDate = sellStartDate;
+            Rowguid = rowguid;
+            ModifiedDate = modifiedDate;
+        }
+
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string ProductNumber { get; set; }

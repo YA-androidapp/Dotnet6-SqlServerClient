@@ -41,7 +41,7 @@ namespace SqlServerClient
 
         public static void GetRecords(string connectionString)
         {
-            var models = new List<Models.Product>();
+            var products = new List<Models.Product>();
 
             try
             {
@@ -57,7 +57,7 @@ namespace SqlServerClient
                             var c = reader[nameof(Models.Product.SellEndDate)];
                             var cc = c == DBNull.Value;
 
-                            models.Add(new Models.Product
+                            products.Add(new Models.Product
                             {
                                 ProductId = (int)reader[nameof(Models.Product.ProductId)],
                                 Name = reader[nameof(Models.Product.Name)].ToString(),
@@ -80,7 +80,7 @@ namespace SqlServerClient
                         }
                     }
                 }
-                Console.WriteLine(models.Count);
+                Console.WriteLine(products.Count);
             }
             catch (SqlException e)
             {
@@ -90,7 +90,7 @@ namespace SqlServerClient
 
         public static void GetRecordsPopulator(string connectionString)
         {
-            var models = new List<Models.Product>();
+            var products = new List<Models.Product>();
 
             try
             {
@@ -100,10 +100,10 @@ namespace SqlServerClient
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        models = new GenericPopulator<Models.Product>().CreateList(reader);
+                        products = new GenericPopulator<Models.Product>().CreateList(reader);
                     }
                 }
-                Console.WriteLine(models.Count);
+                Console.WriteLine(products.Count);
             }
             catch (SqlException e)
             {
