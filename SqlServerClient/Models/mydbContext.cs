@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace SqlServerClient.Models
 {
@@ -36,7 +37,14 @@ namespace SqlServerClient.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Name=MyConn");
+                // Load the app's configuration settings from the JSON file.
+                IConfiguration Configuration = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .Build();
+
+                string connectionString = Configuration.GetConnectionString("MyConn");
+
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
